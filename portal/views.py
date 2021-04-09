@@ -15,6 +15,8 @@ def searchPage(request):
 def loginPage(request):
     return render(request, 'portal/login.html')
 
+def signup(request):
+    return render(request, 'portal/register.html')
 
 def category(request):
     return render(request, 'portal/category.html')
