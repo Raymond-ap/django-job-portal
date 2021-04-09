@@ -1,3 +1,9 @@
 from django.contrib import admin
+from .models import *
 
-# Register your models here.
+
+@admin.register(Job)
+class JobAdmin(admin.ModelAdmin):
+    list_display = ('company_name', 'job_title',
+                    'category', 'created', 'approved')
+    search_fields = ('company_name', 'job_title', 'category')
