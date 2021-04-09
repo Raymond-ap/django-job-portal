@@ -8,8 +8,8 @@ def homePage(request):
 
 
 # ====================
-def about(request):
-    return render(request, 'portal/about-us.html')
+def searchPage(request):
+    return render(request, 'portal/search.html')
 
 
 
@@ -23,3 +23,8 @@ def blog(request):
 
 def contact(request):
     return render(request, 'portal/contact.html')
+
+
+def about(request):
+    return render(request, 'portal/about-us.html')
+
