@@ -15,7 +15,7 @@
 		<!-- meta character set -->
 		<meta charset="UTF-8">
 		<!-- Site Title -->
-		<title>Job Listing {% block title %} {% endblock title%}</title>
+		<title>Finder {% block title %} {% endblock title%}</title>
 
 		<link href="https://fonts.googleapis.com/css?family=Poppins:100,200,400,300,500,600,700" rel="stylesheet"> 
 			<!--
@@ -46,14 +46,15 @@
 				          <li><a href="">Price</a></li>
 				          <li><a href="{% url 'blog' %}">Blog</a></li>
 				          <li><a href="{% url 'contact' %}">Contact</a></li>
-				          <li class="menu-has-children"><a href="">Pages</a>
+				          <li class="menu-has-children"><a href="#">Pages</a>
 				            <ul>
 								<li><a href="{% url 'search' %}">search</a></li>
-								<li><a href="single.html">single</a></li>
+								<li><a href="">Post a job</a></li>
+								<li><a href="">single</a></li>
 				            </ul>
 				          </li>
 				          <li><a class="ticker-btn" href="#">Signup</a></li>
-				          <li><a class="ticker-btn" href="#">Login</a></li>				          				          
+				          <li><a class="ticker-btn" href="{% url 'login' %}">Login</a></li>				          				          
 				        </ul>
 				      </nav><!-- #nav-menu-container -->		    		
 			    	</div>
