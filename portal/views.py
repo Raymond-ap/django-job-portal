@@ -10,3 +10,8 @@ def homePage(request):
 # ====================
 def about(request):
     return render(request, 'portal/about-us.html')
+
+
+
+def category(request):
+    return render(request, 'portal/category.html')
