@@ -15,3 +15,11 @@ def about(request):
 
 def category(request):
     return render(request, 'portal/category.html')
+
+
+def blog(request):
+    return render(request, 'portal/blog-home.html')
+
+
+def contact(request):
+    return render(request, 'portal/contact.html')
