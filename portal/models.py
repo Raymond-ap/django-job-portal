@@ -26,7 +26,7 @@ class Job(models.Model):
     job_title = models.CharField(max_length=200)
     company_email = models.EmailField(blank=True, null=True)
     thumbnail = models.ImageField(upload_to='jobs_img', blank=True, null=True)
-    category = models.CharField(max_length=200)
+    category = models.ForeignKey(Category, on_delete=models.CASCADE, default='Others')
     job_type = models.CharField(max_length=20, choices=_job_Type, default=1)
     description = RichTextField()
     location = models.CharField(max_length=150)
