@@ -9,6 +9,18 @@ _job_Type = (
 )
 
 
+class Category(models.Model):
+    category = models.CharField(max_length=100)
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        verbose_name_plural = 'Categories'
+        ordering = ['-id']
+
+    def __str__(self):
+        return self.category
+
+
 class Job(models.Model):
     company_name = models.CharField(max_length=200)
     job_title = models.CharField(max_length=200)
@@ -22,6 +34,7 @@ class Job(models.Model):
     application_url = models.URLField(blank=True, null=True)
     slug = models.SlugField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
+    featured = models.BooleanField(default=False)
     approved = models.BooleanField(default=True)
 
     class Meta:

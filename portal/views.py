@@ -1,5 +1,5 @@
 from django.shortcuts import render
-
+from .models import Job
 
 def loginPage(request):
     return render(request, 'portal/login.html')
@@ -10,7 +10,11 @@ def signup(request):
 
 
 def homePage(request):
-    return render(request, 'portal/index.html')
+    jobs = Job.objects.filter(approved=True).order_by('-created')
+    context = {
+        'jobs': jobs
+    }
+    return render(request, 'portal/index.html', context)
 
 
 def jobs(request):
