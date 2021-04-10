@@ -9,37 +9,26 @@
 					<div class="row fullscreen d-flex align-items-center justify-content-center">
 						<div class="banner-content col-lg-12">
 							<h1 class="text-white">
-								<span>1500+</span> Jobs posted last week				
+								<span>{{jobs.count}}</span> Jobs posted		
 							</h1>	
-							<form action="search.html" class="serach-form-area">
+							<form action="" method="GET" class="serach-form-area">
 								<div class="row justify-content-center form-wrap">
 									<div class="col-lg-4 form-cols">
-										<input type="text" class="form-control" name="search" placeholder="what are you looging for?">
+									{{filters.form.job_title}}
 									</div>
+
 									<div class="col-lg-3 form-cols">
-										<div class="default-select" id="default-selects">
-											<select>
-												<option value="1">Select area</option>
-												<option value="2">Dhaka</option>
-												<option value="3">Rajshahi</option>
-												<option value="4">Barishal</option>
-												<option value="5">Noakhali</option>
-											</select>
-										</div>
+									<div class="default-select" id="default-selects">
+									{{filters.form.category}}										
 									</div>
+									</div>
+
 									<div class="col-lg-3 form-cols">
-										<div class="default-select" id="default-selects2">
-											<select>
-												<option value="1">All Category</option>
-												<option value="2">Medical</option>
-												<option value="3">Technology</option>
-												<option value="4">Goverment</option>
-												<option value="5">Development</option>
-											</select>
-										</div>										
+									{{filters.form.location}}
 									</div>
+
 									<div class="col-lg-2 form-cols">
-									    <button type="button" class="btn btn-info">
+									    <button type="submit" class="btn btn-info">
 									      <span class="lnr lnr-magnifier"></span> Search
 									    </button>
 									</div>								
@@ -133,7 +122,7 @@
 					<div class="row">
 						<div class="col-lg-2 col-md-4 col-sm-6">
 							<div class="single-fcat">
-								<a href="category.html">
+								<a href="{% url 'jobs' %}">
 									<img src="{% static 'img/o1.png' %}" alt="">
 								</a>
 								<p>Accounting</p>
@@ -141,7 +130,7 @@
 						</div>
 						<div class="col-lg-2 col-md-4 col-sm-6">
 							<div class="single-fcat">
-								<a href="category.html">
+								<a href="{% url 'jobs' %}">
 									<img src="{% static 'img/o2.png' %}" alt="">
 								</a>
 								<p>Development</p>
@@ -149,7 +138,7 @@
 						</div>
 						<div class="col-lg-2 col-md-4 col-sm-6">
 							<div class="single-fcat">
-								<a href="category.html">
+								<a href="{% url 'jobs' %}">
 									<img src="{% static 'img/o3.png' %}" alt="">
 								</a>
 								<p>Technology</p>
@@ -157,7 +146,7 @@
 						</div>
 						<div class="col-lg-2 col-md-4 col-sm-6">
 							<div class="single-fcat">
-								<a href="category.html">
+								<a href="{% url 'jobs' %}">
 									<img src="{% static 'img/o4.png' %}" alt="">
 								</a>
 								<p>Media & News</p>
@@ -165,7 +154,7 @@
 						</div>
 						<div class="col-lg-2 col-md-4 col-sm-6">
 							<div class="single-fcat">
-								<a href="category.html">
+								<a href="{% url 'jobs' %}">
 									<img src="{% static 'img/o5.png' %}" alt="">
 								</a>
 								<p>Medical</p>
@@ -173,7 +162,7 @@
 						</div>
 						<div class="col-lg-2 col-md-4 col-sm-6">
 							<div class="single-fcat">
-								<a href="category.html">
+								<a href="{% url 'jobs' %}">
 									<img src="{% static 'img/o6.png' %}" alt="">
 								</a>
 								<p>Goverment</p>
@@ -205,7 +194,11 @@
 										</div>
 										<ul class="btns">
 											<li><a href="{% url 'detail' job.slug %}"><span class="lnr lnr-heart"></span></a></li>
+											{% if request.user.is_authenticated %}
 											<li><a href="{% url 'detail' job.slug %}">Apply</a></li>
+											{% else %}
+											<li><a href="">Login to apply</a></li>
+											{% endif %}
 										</ul>
 									</div>
 									<p>
@@ -238,17 +231,34 @@
 										{% if job.salary %}
 										<p class="address"><span class="lnr lnr-database"></span> GHC {{job.salary}}</p>
 										{% endif %}
+
+										{% if request.user.is_authenticated %}
 										<a href="{% url 'detail' job.slug %}" class="btns text-uppercase">Apply job</a>
+										{% else %}
+										<a href="" class="btns text-uppercase">Login to apply</a>
+										{% endif %}
 									</div>			
 								{% endfor %}														
 								</div>
 							</div>							
 
-							<div class="single-slidebar">
-								<h4>Jobs by Category</h4>
+								<div class="single-slidebar">
+								<h4>Jobs by Category </h4>
 								<ul class="cat-list">
-									<li><a class="justify-content-between d-flex" href="category.html"><p>Technology</p><span>37</span></a></li>
-
+								<li>
+									<a class="justify-content-between d-flex" href="{% url 'jobs' %}">
+									<p>All</p>
+									<span></span>
+									</a>
+									</li>
+								{% for category in categories|slice:":10" %}
+									<li>
+									<a class="justify-content-between d-flex" href="{% url 'jobs' %}?category={{category.category}}">
+									<p>{{category.category}}</p>
+									<span>37</span>
+									</a>
+									</li>
+								{% endfor %}
 								</ul>
 							</div>
 

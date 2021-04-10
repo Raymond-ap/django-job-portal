@@ -1,6 +1,12 @@
-from django.shortcuts import render
-from .models import *
+from django.contrib import messages
+from django.contrib.auth import authenticate, login, logout
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
+from django.core.paginator import Paginator
+from django.shortcuts import redirect, render
+
 from .filters import JobFilter
+from .models import *
 
 
 def loginPage(request):
@@ -12,11 +18,18 @@ def signup(request):
 
 
 def homePage(request):
-    return render(request, 'portal/index.html')
+    filters = JobFilter(
+        request.GET, queryset=Job.objects.filter(approved=True))
+
+    context = {
+        'filters': filters
+    }
+    return render(request, 'portal/index.html', context)
 
 
 def jobs(request):
-    # Filter Jobs by category
+
+    # FILTER JOB BY CATEGORY
     category = request.GET.get('category')
     if category == None:
         jobs = Job.objects.filter(approved=True).order_by('-created')
@@ -24,12 +37,21 @@ def jobs(request):
         jobs = Job.objects.filter(
             approved=True, category__category=category)
 
-    filters = JobFilter(request.GET, queryset=Job.objects.filter(approved=True))
+    # SEARCH FIELDS
+    filters = JobFilter(
+        request.GET, queryset=Job.objects.filter(approved=True))
     jobs = filters.qs
+
+    # PAGINATOR
+    paginator = Paginator(jobs, 15)
+    page_number = request.GET.get('page', 1)
+    page_objects = paginator.get_page(page_number)
 
     context = {
         'jobs': jobs,
-        'filters': filters
+        'filters': filters,
+        'page_objects': page_objects,
+        'paginator': paginator
     }
     return render(request, 'portal/search.html', context)
 
