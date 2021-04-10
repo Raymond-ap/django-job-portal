@@ -18,6 +18,7 @@ class Job(models.Model):
     description = RichTextField()
     location = models.CharField(max_length=150)
     salary = models.FloatField(blank=True, null=True)
+    application_url = models.URLField(blank=True, null=True)
     slug = models.SlugField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
     approved = models.BooleanField(default=True)
