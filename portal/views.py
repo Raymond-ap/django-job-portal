@@ -24,7 +24,7 @@ def jobs(request):
 
 # Job Detail View
 def jobDetail(request, slug):
-    job = Job.objects.filter(approved=True, slug=slug)
+    job = Job.objects.filter(slug=slug)
 
     # try:
     #     job = Job.objects.filter(approved=True, slug=slug)
