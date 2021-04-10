@@ -12,7 +12,10 @@
 							<h1 class="text-white">
 								{{job.company_name|title}}			
 							</h1>	
-							<p class="text-white link-nav"><a href="{% url 'home' %}">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="#"> Job Details</a></p>
+							<p class="text-white link-nav">
+							<a href="{% url 'home' %}">Home </a>  
+							<span class="lnr lnr-arrow-right"></span>  
+							<a href="#"> Job Details</a></p>
 						</div>											
 					</div>
 				</div>
@@ -26,22 +29,23 @@
 						<div class="col-lg-8 post-list">
 							<div class="single-post d-flex flex-row">
 								<div class="thumb">
-									<img src="img/post.png" alt="">
-									
+									<img src="{% static 'img/post.png' %}" alt="">
 								</div>
 								&nbsp;
 								<div class="details">
 									<div class="title d-flex flex-row justify-content-between">
 										<div class="titles">
-											<a href="#"><h4>{{job.job_title}}</h4></a>
+											<a href="{% url 'detail' job.slug %}"><h4>{{job.job_title}}</h4></a>
 											<h6>{{job.company_name}}</h6>					
 										</div>
 										<ul class="btns">
-											<li><a href="#"><span class="lnr lnr-heart"></span></a></li>
-											<li><a href="#">Apply</a></li>
+											<li><a href="{% url 'detail' job.slug %}"><span class="lnr lnr-heart"></span></a></li>
+											<li><a href="{% url 'detail' job.slug %}">Apply</a></li>
 										</ul>
 									</div>
-
+									<p>
+									{{job.description|slice:":150"|safe}}...
+									</p>
 									<h5>Job Nature: {{job.job_type}}</h5>
 									<p class="address"><span class="lnr lnr-map"></span> {{job.location}}</p>
 									{% if job.salary %}
@@ -53,26 +57,22 @@
 							<div class="single-post job-details">
 								<h4 class="single-title">Whom we are looking for</h4>
 								<p>
-									Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+									{{job.description|safe}}
 								</p>
 							</div>
+							{% if requirements %}
 							<div class="single-post job-experience">
 								<h4 class="single-title">Requirements</h4>
 								<ul>
+								{% for requirement in requirements %}
 									<li>
-										<img src="img/pages/list.jpg" alt="">
-										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquaut enim ad minim veniam.</span>
+										<img src="{% static 'img/pages/list.jpg' %}" alt="">
+										<span>{{requirement.requirement}}</span>
 									</li>
-									<li>
-										<img src="img/pages/list.jpg" alt="">
-										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquaut enim ad minim veniam.</span>
-									</li>
-									<li>
-										<img src="img/pages/list.jpg" alt="">
-										<span>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliquaut enim ad minim veniam.</span>
-									</li>																											
+								{% endfor %}																									
 								</ul>
 							</div>
+							{% endif %}
 														
 						</div>
 						<div class="col-lg-4 sidebar">

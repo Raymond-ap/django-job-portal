@@ -24,15 +24,15 @@ def jobs(request):
 
 # Job Detail View
 def jobDetail(request, slug):
-    job = Job.objects.filter(slug=slug)
-
-    # try:
-    #     job = Job.objects.filter(approved=True, slug=slug)
-    # except Exception:
-    #     pass
+    try:
+        job = Job.objects.get(approved=True, slug=slug)
+        requirements = job.requirements.all()
+    except Exception:
+        pass
 
     context = {
         'job': job,
+        'requirements':requirements,
     }
     return render(request, 'portal/single.html', context)
 
