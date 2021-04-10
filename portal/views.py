@@ -12,29 +12,30 @@ def signup(request):
 
 
 def homePage(request):
-    jobs = Job.objects.filter(approved=True).order_by('-created')
-    context = {
-        'jobs': jobs
-    }
-    return render(request, 'portal/index.html', context)
+    return render(request, 'portal/index.html')
 
 
 def jobs(request):
-    jobs = Job.objects.filter(approved=True).order_by('-created')
+    # Filter Jobs by category
+    category = request.GET.get('category')
+    if category == None:
+        jobs = Job.objects.filter(approved=True).order_by('-created')
+    else:
+        jobs = Job.objects.filter(
+            approved=True, category__category=category)
 
-    filters = JobFilter(request.GET, queryset=jobs)
+    filters = JobFilter(request.GET, queryset=Job.objects.filter(approved=True))
     jobs = filters.qs
 
     context = {
         'jobs': jobs,
-        'filters':filters
+        'filters': filters
     }
     return render(request, 'portal/search.html', context)
 
 
 # Job Detail View
 def jobDetail(request, slug):
-    jobs = Job.objects.filter(approved=True).order_by('-created')
 
     try:
         job = Job.objects.get(approved=True, slug=slug)
@@ -44,7 +45,6 @@ def jobDetail(request, slug):
 
     context = {
         'job': job,
-        'jobs': jobs,
         'requirements': requirements,
     }
     return render(request, 'portal/single.html', context)

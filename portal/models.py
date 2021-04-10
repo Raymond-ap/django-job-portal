@@ -1,6 +1,7 @@
 from django.db import models
 from django.utils.text import slugify
 from ckeditor.fields import RichTextField
+from django.db.models import Count
 
 _job_Type = (
     ('Full Time', 'Full Time'),
@@ -26,7 +27,8 @@ class Job(models.Model):
     job_title = models.CharField(max_length=200)
     company_email = models.EmailField(blank=True, null=True)
     thumbnail = models.ImageField(upload_to='jobs_img', blank=True, null=True)
-    category = models.ForeignKey(Category, on_delete=models.CASCADE, default='Others')
+    category = models.ForeignKey(
+        Category, on_delete=models.CASCADE, default='Others')
     job_type = models.CharField(max_length=20, choices=_job_Type, default=1)
     description = RichTextField()
     location = models.CharField(max_length=150)
@@ -39,6 +41,10 @@ class Job(models.Model):
 
     class Meta:
         ordering = ['-created']
+
+    def get_context(self, request, *args, **kwargs):
+        context['category'] = Category.objects.annotate(
+            num_posts=Count('slug'))
 
     # Generate random slugs
     def save(self, *args, **kwargs):

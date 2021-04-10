@@ -40,12 +40,11 @@
 										</div>
 										<ul class="btns">
 											<li><a href="{% url 'detail' job.slug %}"><span class="lnr lnr-heart"></span></a></li>
-											<li><a href="{% url 'detail' job.slug %}">Apply</a></li>
+											{% if job.application_url %}
+											<li><a href="{{job.application_url}}" target="_blank">Apply</a></li>
+											{% endif %}
 										</ul>
 									</div>
-									<p>
-									{{job.description|slice:":150"|safe}}...
-									</p>
 									<h5>Job Nature: {{job.job_type}}</h5>
 									<p class="address"><span class="lnr lnr-map"></span> {{job.location}}</p>
 									{% if job.salary %}
