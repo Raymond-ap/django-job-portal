@@ -19,7 +19,11 @@ def homePage(request):
 
 
 def jobs(request):
-    return render(request, 'portal/search.html')
+    jobs = Job.objects.filter(approved=True).order_by('-created')
+    context = {
+        'jobs': jobs
+    }
+    return render(request, 'portal/search.html', context)
 
 
 # Job Detail View
