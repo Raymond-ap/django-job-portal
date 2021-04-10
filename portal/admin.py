@@ -2,8 +2,12 @@ from django.contrib import admin
 from .models import *
 
 
-@admin.register(Job)
+class JobRequirementInline(admin.TabularInline):
+    model = JobRequirement
+    extra = 3
+
+
 class JobAdmin(admin.ModelAdmin):
-    list_display = ('company_name', 'job_title',
-                    'category', 'created', 'approved')
-    search_fields = ('company_name', 'job_title', 'category')
+    inlines = [JobRequirementInline]
+
+admin.site.register(JobAdmin, JobRequirementInline)

@@ -26,12 +26,12 @@ class Job(models.Model):
 
     def __str__(self):
         return self.company_name
-    
+
     # Generate random slugs
     def save(self, *args, **kwargs):
         global str
         if self.slug == None:
-            slug = slugify(self.title)
+            slug = slugify(self.job_title)
 
             has_slug = Job.objects.filter(slug=slug).exists()
             count = 1
@@ -41,3 +41,11 @@ class Job(models.Model):
                 has_slug = Job.objects.filter(slug=slug).exists()
             self.slug = slug
         super().save(*args, **kwargs)
+
+
+class JobRequirement(models.Model):
+    job = models.ForeignKey(Job, on_delete=models.SET_NULL, null=True)
+    requirement = models.TextField()
+
+    def __str__(self):
+        return f'Requirements for {self.job}'
