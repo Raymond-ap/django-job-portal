@@ -38,8 +38,8 @@ def jobDetail(request, slug):
 
     context = {
         'job': job,
-        'jobs':jobs,
-        'requirements':requirements,
+        'jobs': jobs,
+        'requirements': requirements,
     }
     return render(request, 'portal/single.html', context)
 

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
 
     'portal.apps.PortalConfig',
     'ckeditor',
+    'django_filters',
 ]
 
 MIDDLEWARE = [
