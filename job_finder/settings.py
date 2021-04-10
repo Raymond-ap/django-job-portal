@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'portal.apps.PortalConfig',
+    'blog.apps.BlogConfig',
     'ckeditor',
     'django_filters',
 ]
