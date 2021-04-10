@@ -12,6 +12,7 @@ _job_Type = (
 class Job(models.Model):
     company_name = models.CharField(max_length=200)
     job_title = models.CharField(max_length=200)
+    thumbnail = models.ImageField(upload_to='jobs_img', blank=True, null=True)
     category = models.CharField(max_length=200)
     job_type = models.CharField(max_length=20, choices=_job_Type, default=1)
     description = RichTextField()
