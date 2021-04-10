@@ -104,7 +104,7 @@
 									<img class="img-fluid" src="{% static 'img/p1.png' %}" alt="">
 								</div>
 								<div class="details">
-									<a href="#"><h4>{{job.job_title|title}}</h4></a>
+									<a href="{% url 'detail' job.slug %}"><h4>{{job.job_title|title}}</h4></a>
 									<h6>{{job.location}}</h6>
 									<p>
 									{{job.description|slice:":100"|safe}}...
@@ -195,25 +195,17 @@
 							<div class="single-post d-flex flex-row">
 								<div class="thumb">
 									<img src="{% static 'img/post.png' %}" alt="">
-									<ul class="tags">
-										<li>
-											<a href="#">Art</a>
-										</li>
-										<li>
-											<a href="#">Media</a>
-										</li>
-									</ul>
 								</div>
 								&nbsp;
 								<div class="details">
 									<div class="title d-flex flex-row justify-content-between">
 										<div class="titles">
-											<a href="single.html"><h4>{{job.job_title}}</h4></a>
+											<a href="{% url 'detail' job.slug %}"><h4>{{job.job_title}}</h4></a>
 											<h6>{{job.company_name}}</h6>					
 										</div>
 										<ul class="btns">
-											<li><a href="#"><span class="lnr lnr-heart"></span></a></li>
-											<li><a href="#">Apply</a></li>
+											<li><a href="{% url 'detail' job.slug %}"><span class="lnr lnr-heart"></span></a></li>
+											<li><a href="{% url 'detail' job.slug %}">Apply</a></li>
 										</ul>
 									</div>
 									<p>
@@ -246,7 +238,7 @@
 								<div class="active-relatedjob-carusel">
 								{% for job in jobs|slice:":4" %}
 									<div class="single-rated">
-										<a href="single.html"><h4>{{job.job_title|title}}</h4></a>
+										<a href="{% url 'detail' job.slug %}"><h4>{{job.job_title|title}}</h4></a>
 										<h6>{{job.company_name|title}}</h6>
 										<p>
 										{{job.description|slice:":100"|safe}}..
@@ -256,7 +248,7 @@
 										{% if job.salary %}
 										<p class="address"><span class="lnr lnr-database"></span> GHC {{job.salary}}</p>
 										{% endif %}
-										<a href="#" class="btns text-uppercase">Apply job</a>
+										<a href="{% url 'detail' job.slug %}" class="btns text-uppercase">Apply job</a>
 									</div>			
 								{% endfor %}														
 								</div>

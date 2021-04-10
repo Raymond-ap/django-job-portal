@@ -9,4 +9,6 @@ urlpatterns = [
     path('contact', contact, name="contact"),
     path('login', loginPage, name="login"),
     path('signup', signup, name="signup"),
+
+    path('detail/<slug:slug>', jobDetail, name='detail'),
 ]

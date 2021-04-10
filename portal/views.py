@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import Job
 
+
 def loginPage(request):
     return render(request, 'portal/login.html')
 
@@ -19,6 +20,21 @@ def homePage(request):
 
 def jobs(request):
     return render(request, 'portal/search.html')
+
+
+# Job Detail View
+def jobDetail(request, slug):
+    job = Job.objects.filter(approved=True, slug=slug)
+
+    # try:
+    #     job = Job.objects.filter(approved=True, slug=slug)
+    # except Exception:
+    #     pass
+
+    context = {
+        'job': job,
+    }
+    return render(request, 'portal/single.html', context)
 
 
 def blog(request):
