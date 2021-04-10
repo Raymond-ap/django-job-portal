@@ -10,4 +10,5 @@ class JobRequirementInline(admin.TabularInline):
 class JobAdmin(admin.ModelAdmin):
     inlines = [JobRequirementInline]
 
-admin.site.register(JobAdmin, JobRequirementInline)
+
+admin.site.register(Job, JobRequirementInline)

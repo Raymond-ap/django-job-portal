@@ -24,9 +24,6 @@ class Job(models.Model):
     class Meta:
         ordering = ['-created']
 
-    def __str__(self):
-        return self.company_name
-
     # Generate random slugs
     def save(self, *args, **kwargs):
         global str
@@ -42,10 +39,14 @@ class Job(models.Model):
             self.slug = slug
         super().save(*args, **kwargs)
 
+    def __str__(self):
+        return self.company_name
+
 
 class JobRequirement(models.Model):
-    job = models.ForeignKey(Job, on_delete=models.SET_NULL, null=True)
-    requirement = models.TextField()
+    job = models.ForeignKey(Job, on_delete=models.CASCADE,
+                            related_name='requirements')
+    requirement = models.CharField(max_length=1000)
 
     def __str__(self):
-        return f'Requirements for {self.job}'
+        return f'Requirements for {self.job.job_title}'
