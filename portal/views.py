@@ -1,5 +1,6 @@
 from django.shortcuts import render
-from .models import Job
+from .models import *
+from .filters import JobFilter
 
 
 def loginPage(request):
@@ -20,8 +21,13 @@ def homePage(request):
 
 def jobs(request):
     jobs = Job.objects.filter(approved=True).order_by('-created')
+
+    filters = JobFilter(request.GET, queryset=jobs)
+    jobs = filters.qs
+
     context = {
-        'jobs': jobs
+        'jobs': jobs,
+        'filters':filters
     }
     return render(request, 'portal/search.html', context)
 

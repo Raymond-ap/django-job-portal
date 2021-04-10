@@ -17,35 +17,24 @@
 							<p class="text-white link-nav">
 								<a href="{% url 'home' %}">Home </a> <span class="lnr lnr-arrow-right"></span> <a href="search.html"> Job details page</a>
 							</p>	
-							<form action="#" class="serach-form-area">
+							<form action="" method="GET" class="serach-form-area">
 								<div class="row justify-content-center form-wrap">
 									<div class="col-lg-4 form-cols">
-										<input type="text" class="form-control" name="search" placeholder="what are you looging for?">
+									{{filters.form.job_title}}
 									</div>
+
 									<div class="col-lg-3 form-cols">
-										<div class="default-select" id="default-selects">
-											<select>
-												<option value="1">Select area</option>
-												<option value="2">Dhaka</option>
-												<option value="3">Rajshahi</option>
-												<option value="4">Barishal</option>
-												<option value="5">Noakhali</option>
-											</select>
-										</div>
+									<div class="default-select" id="default-selects">
+									{{filters.form.category}}										
 									</div>
+									</div>
+
 									<div class="col-lg-3 form-cols">
-										<div class="default-select" id="default-selects2">
-											<select>
-												<option value="1">All Category</option>
-												<option value="2">Medical</option>
-												<option value="3">Technology</option>
-												<option value="4">Goverment</option>
-												<option value="5">Development</option>
-											</select>
-										</div>										
+									{{filters.form.location}}
 									</div>
+
 									<div class="col-lg-2 form-cols">
-									    <button type="button" class="btn btn-info">
+									    <button type="submit" class="btn btn-info">
 									      <span class="lnr lnr-magnifier"></span> Search
 									    </button>
 									</div>								
@@ -90,6 +79,8 @@
 									{% endif %}
 								</div>
 							</div>
+							{% empty %}
+							<h3> No job post found </h4>
 							{% endfor %}
 
 						</div>
