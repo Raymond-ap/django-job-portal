@@ -28,6 +28,8 @@ def jobs(request):
 
 # Job Detail View
 def jobDetail(request, slug):
+    jobs = Job.objects.filter(approved=True).order_by('-created')
+
     try:
         job = Job.objects.get(approved=True, slug=slug)
         requirements = job.requirements.all()
@@ -36,6 +38,7 @@ def jobDetail(request, slug):
 
     context = {
         'job': job,
+        'jobs':jobs,
         'requirements':requirements,
     }
     return render(request, 'portal/single.html', context)
