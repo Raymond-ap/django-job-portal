@@ -72,9 +72,15 @@ def jobDetail(request, slug):
     return render(request, 'portal/single.html', context)
 
 
-
-
 def contact(request):
+    if request.method == 'POST':
+        data = request.POST
+        form = Contact(name=data['name'], email=data['email'],
+                       subject=data['subject'], message=data['message'])
+        if not Contact.objects.filter(name=data['name'], email=data['email'], subject=data['subject'], message=data['message']).exists():
+            form.save()
+            messages.info(request, 'We will soon get back to you!!!')
+            return redirect('contact')
     return render(request, 'portal/contact.html')
 
 
