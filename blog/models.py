@@ -10,6 +10,7 @@ class Blog(models.Model):
     category = models.CharField(max_length=150)
     description = RichTextField()
     published = models.BooleanField(default=True)
+    featured = models.BooleanField(default=False)
     slug = models.SlugField(blank=True, null=True)
     created = models.DateTimeField(auto_now_add=True)
 
