@@ -16,3 +16,18 @@ class Blog(models.Model):
 
     def __str__(self):
         return self.title
+
+
+class BlogComment(models.Model):
+    post = models.ForeignKey(Blog, on_delete=models.SET_NULL, null=True)
+    name = models.CharField(max_length=150)
+    email = models.EmailField()
+    message = models.TextField()
+    approved = models.BooleanField(default=True)
+    created = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-id']
+
+    def __str__(self):
+        return self.post.title
