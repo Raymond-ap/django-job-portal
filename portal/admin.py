@@ -1,6 +1,8 @@
 from django.contrib import admin
 from .models import *
 
+#################### JOb Admin ####################
+
 
 class JobRequirementInline(admin.TabularInline):
     model = JobRequirement
@@ -18,8 +20,15 @@ class JobAdmin(admin.ModelAdmin):
 admin.site.register(Job, JobAdmin)
 
 
-# ========= Category =============
+#################### Category ####################
 @admin.register(Category)
 class CategoryAdmin(admin.ModelAdmin):
     list_display = ('category', 'created')
     search_fields = ('category',)
+
+
+#################### Contact ####################
+@admin.register(Contact)
+class ContactAdmin(admin.ModelAdmin):
+    list_display = ('name', 'email', 'subject', 'date', 'viwed')
+    search_fields = ('name', 'email', 'subject')
