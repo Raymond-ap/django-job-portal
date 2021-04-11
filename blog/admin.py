@@ -6,3 +6,9 @@ from .models import *
 class BlogAdmin(admin.ModelAdmin):
     list_display = ('title', 'category', 'published', 'created')
     search_fields = ('title', 'category')
+
+
+@admin.register(BlogComment)
+class BlogCommentAdmin(admin.ModelAdmin):
+    list_display = ('post', 'name', 'email', 'approved', 'created')
+    search_fields = ('post', 'name','email')
