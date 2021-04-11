@@ -14,6 +14,6 @@ class BlogFilter(django_filters.FilterSet):
                 'extra': lambda f: {
                     'lookup_expr': 'icontains',
                     'widget': forms.TextInput(attrs={'class': '', 'placeholder': 'Search blog'})
+                }
             }
-        }
         }
