@@ -35,7 +35,8 @@ class Blog(models.Model):
 
 
 class BlogComment(models.Model):
-    post = models.ForeignKey(Blog, on_delete=models.SET_NULL, null=True)
+    post = models.ForeignKey(
+        Blog, on_delete=models.SET_NULL, null=True, related_name='comments')
     name = models.CharField(max_length=150)
     email = models.EmailField()
     message = models.TextField()
@@ -46,4 +47,4 @@ class BlogComment(models.Model):
         ordering = ['-id']
 
     def __str__(self):
-        return self.post.title
+        return self.name
