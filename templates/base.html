@@ -69,12 +69,15 @@
 					<div class="row">
 						<div class="col-lg-3  col-md-12">
 							<div class="single-footer-widget">
-								<h6>Top Products</h6>
+								<h6>Quick Links</h6>
 								<ul class="footer-nav">
-									<li><a href="#">Managed Website</a></li>
-									<li><a href="#">Manage Reputation</a></li>
-									<li><a href="#">Power Tools</a></li>
-									<li><a href="#">Marketing Service</a></li>
+									<li><a href="{% url 'home' %}">Home</a></li>
+									<li><a href="{% url 'jobs' %}">Jobs</a></li>
+									{% if blog_count > 1 %}
+									<li><a href="{% url 'blog' %}">Blog</a></li>
+									{% endif %}
+									<li><a href="{% url 'about' %}">About us</a></li>
+									<li><a href="{% url 'contact' %}">Contact us</a></li>
 								</ul>
 							</div>
 						</div>
