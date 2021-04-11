@@ -72,8 +72,6 @@ def jobDetail(request, slug):
     return render(request, 'portal/single.html', context)
 
 
-def blog(request):
-    return render(request, 'portal/blog-home.html')
 
 
 def contact(request):
