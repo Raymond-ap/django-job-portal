@@ -15,7 +15,7 @@
 								Search Results				
 							</h1>
 							<p class="text-white link-nav">
-								<a href="{% url 'home' %}">Home </a> <span class="lnr lnr-arrow-right"></span> <a href="#" Search</a>
+								<a href="{% url 'home' %}">Home </a> <span class="lnr lnr-arrow-right"></span> <a href="#"> Search</a>
 							</p>	
 							<form action="" method="GET" class="serach-form-area">
 								<div class="row justify-content-center form-wrap">
@@ -159,57 +159,37 @@
 								{% endfor %}
 								</ul>
 							</div>
-
+							
+							{% if blog_count > 0 %}
 							<div class="single-slidebar">
 								<h4>Carrer Advice Blog</h4>
 								<div class="blog-list">
-									<div class="single-blog " style="background:#000 url(img/blog1.jpg);">
-										<a href="#"><h4>Home Audio Recording <br>
-										For Everyone</h4></a>
+								{% for blog in blogs %}
+								{% if blog.featured %}
+									{% if blog.thumbnail %}
+									<div class="single-blog " style="background:#000 url({% static 'img/blog2.jpg' %});">
+									{% else %}
+									<div class="single-blog " style="background:#000 url({% static 'img/blog3.jpg' %});">
+									{% endif %}
+										<a href="{% url 'blog_detail' blog.slug %}">
+										<h4>
+										{{blog.title|title}}
+										</h4></a>
 										<div class="meta justify-content-between d-flex">
 											<p>
-												02 Hours ago
+												{{blog.created}}
 											</p>
 											<p>
-												<span class="lnr lnr-heart"></span>
-												06
 												 <span class="lnr lnr-bubble"></span>
-												02
+												{{blog.comments.count}}
 											</p>
 										</div>
 									</div>
-									<div class="single-blog " style="background:#000 url(img/blog2.jpg);">
-										<a href="#"><h4>Home Audio Recording <br>
-										For Everyone</h4></a>
-										<div class="meta justify-content-between d-flex">
-											<p>
-												02 Hours ago
-											</p>
-											<p>
-												<span class="lnr lnr-heart"></span>
-												06
-												 <span class="lnr lnr-bubble"></span>
-												02
-											</p>
-										</div>
-									</div>
-									<div class="single-blog " style="background:#000 url(img/blog1.jpg);">
-										<a href="#"><h4>Home Audio Recording <br>
-										For Everyone</h4></a>
-										<div class="meta justify-content-between d-flex">
-											<p>
-												02 Hours ago
-											</p>
-											<p>
-												<span class="lnr lnr-heart"></span>
-												06
-												 <span class="lnr lnr-bubble"></span>
-												02
-											</p>
-										</div>
-									</div>																		
+									{% endif %}
+								{% endfor %}																		
 								</div>
 							</div>							
+							{% endif %}									
 
 						</div>
 					</div>
