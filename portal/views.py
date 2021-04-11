@@ -10,7 +10,21 @@ from .models import *
 
 
 def loginPage(request):
+    if request.method == 'POST':
+        data = request.POST
+        user = authenticate(
+            username=data['username'], password=data['password'])
+        if user is not None:
+            login(request, user)
+            return redirect('jobs')
+        else:
+            messages.info(request, 'An error occured. Please try again')
     return render(request, 'portal/login.html')
+
+
+def logoutFn(request):
+    logout(request)
+    return redirect('jobs')
 
 
 def signup(request):
