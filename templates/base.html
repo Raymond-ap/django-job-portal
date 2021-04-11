@@ -151,6 +151,21 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			<script src="{% static 'js/parallax.min.js' %}"></script>		
 			<script src="{% static 'js/mail-script.js' %}"></script>	
 			<script src="{% static 'js/main.js' %}"></script>	
+			<script>
+			const nameField = document.getElementById('id_name')
+			const emailField = document.getElementById('id_email')
+			const textArea = document.getElementById('id_message')
+
+			const arr = [nameField, emailField]
+			arr.forEach(cur => {
+				cur.className = 'common-input mb-20 form-control'
+			})
+			nameField.placeholder = 'Your name'
+			emailField.placeholder = 'Your email(email will not be published)'
+
+			textArea.className = 'form-control mb-10'
+			textArea.placeholder = 'Your review'
+			</script>
 		</body>
 	</html>
 
