@@ -72,3 +72,18 @@ class JobRequirement(models.Model):
 
     def __str__(self):
         return f'Requirements for {self.job.job_title}'
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=150)
+    email = models.EmailField()
+    subject = models.CharField(max_length=200)
+    message = models.TextField()
+    viwed = models.BooleanField(default=False)
+    date = models.DateTimeField(auto_now_add=True)
+
+    class Meta:
+        ordering = ['-id']
+
+    def __str__(self):
+        return self.name
