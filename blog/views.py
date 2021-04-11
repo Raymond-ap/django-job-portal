@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from .models import *
 from .filters import BlogFilter
+from django.http import HttpResponse
 
 
 def blog(request):
@@ -10,6 +11,13 @@ def blog(request):
 
     context = {
         'blogs': blogs,
-        'filters':filters
+        'filters': filters
     }
     return render(request, 'portal/blog-home.html', context)
+
+
+def blogDetail(request, slug):
+    try:
+        blog = Blog.objects.get(slug=slug, published=True)
+    except Exception:
+        return HttpResponse('Sorry blog does not exit')
