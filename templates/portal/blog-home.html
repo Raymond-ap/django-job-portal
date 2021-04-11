@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 {% load static %}
-{% block title %} {% endblock title%}
+{% block title %} | Blog {% endblock title%}
 {% block content %}
 
 			<!-- start banner Area -->
@@ -13,7 +13,8 @@
 								Blog Posts				
 							</h1>	
 							<p class="text-white link-nav"><a href="{% url 'home' %}">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="blog-home.html"> Blog Posts</a></p>
-						</div>											
+						</div>	
+																
 					</div>
 				</div>
 			</section>
@@ -24,13 +25,15 @@
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-8 post-list blog-post-list">
-							{% for blog in blogs %}
+							{% for blog in page_objects %}
 							<div class="single-post">
-								<img class="img-fluid" src="{% static 'img/blog/p1.jpg' %}" alt="">
+							{% if blog.thumbnail %}
+								<img class="img-fluid" style"height: 15vh !important; widht:100% !important; object-fit: cover" src="{{blog.thumbnail.url}}" alt="">
+							{% endif %}
 								<ul class="tags">
-									<li><a href="#">{{blog.category}}</a></li>
+									<li><a href="{% url 'blog_detail' blog.slug %}">{{blog.category}}</a></li>
 								</ul>
-								<a href="blog-single.html">
+								<a href="{% url 'blog_detail' blog.slug %}">
 									<h1>
 										{{blog.title|title}}
 									</h1>
@@ -42,7 +45,7 @@
 									<div class="user-details row align-items-center">
 										<div class="comment-wrap col-lg-6">
 											<ul>
-												<li><a href="#"><span class="lnr lnr-bubble"></span> 06 Comments</a></li>
+												<li><a href="{% url 'blog_detail' blog.slug %}#comment"><span class="lnr lnr-bubble"></span> {{blog.comments.count}} Comments</a></li>
 											</ul>
 										</div>
 										<div class="social-wrap col-lg-6">
@@ -58,8 +61,29 @@
 								</div>
 
 							</div>		
-							<br><br><br>			
+							<br><br><br>
+							{% empty %}		
+							<h3>No blog post found</h3>	
 							{% endfor %}	
+							 <div class="container mt-5 text-center">
+								<ul class="pagination pagination-info">
+								 {% if page_objects.has_previous  %}
+								<li class="page-item">
+								<a href="?page={{page_objects.previous_page_number}}" class="page-link">PREV</a>
+								</li>
+								{% endif %}
+
+								<li class="active page-item">
+								<a href="javascript:void(0);" class="page-link">{{page_objects.number}}</a>
+								</li>
+								
+								{% if page_objects.has_next  %}
+								<li class="page-item">
+								<a href="?page={{page_objects.next_page_number }}" class="page-link">NEXT</a>
+								</li>
+								{% endif %}
+							</ul>
+							 </div>
 																							
 						</div>
 
@@ -71,34 +95,6 @@
 								</form>								
 							</div>
 
-							<div class="single-widget protfolio-widget">
-								<img src="{% static 'img/blog/user2.jpg' %}" alt="">
-								<a href="#"><h4>Adele Gonzalez</h4></a>
-								<p>
-									MCSE boot camps have its supporters and
-									its detractors. Some people do not understand why you should have to spend money
-									on boot camp when you can get.
-								</p>
-								<ul>
-									<li><a href="#"><i class="fa fa-facebook"></i></a></li>
-									<li><a href="#"><i class="fa fa-twitter"></i></a></li>
-									<li><a href="#"><i class="fa fa-dribbble"></i></a></li>
-									<li><a href="#"><i class="fa fa-behance"></i></a></li>
-								</ul>								
-							</div>
-
-							<div class="single-widget category-widget">
-								<h4 class="title">Post Categories</h4>
-								<ul>
-									<li><a href="#" class="justify-content-between align-items-center d-flex"><h6>Techlology</h6> <span>37</span></a></li>
-									<li><a href="#" class="justify-content-between align-items-center d-flex"><h6>Lifestyle</h6> <span>24</span></a></li>
-									<li><a href="#" class="justify-content-between align-items-center d-flex"><h6>Fashion</h6> <span>59</span></a></li>
-									<li><a href="#" class="justify-content-between align-items-center d-flex"><h6>Art</h6> <span>29</span></a></li>
-									<li><a href="#" class="justify-content-between align-items-center d-flex"><h6>Food</h6> <span>15</span></a></li>
-									<li><a href="#" class="justify-content-between align-items-center d-flex"><h6>Architecture</h6> <span>09</span></a></li>
-									<li><a href="#" class="justify-content-between align-items-center d-flex"><h6>Adventure</h6> <span>44</span></a></li>
-								</ul>
-							</div>
 
 
 						</div>
