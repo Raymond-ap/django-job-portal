@@ -9,6 +9,7 @@ urlpatterns = [
     path('login', loginPage, name="login"),
     path('signup', signup, name="signup"),
     path('logout', logoutFn, name="logout"),
+    path('post', addJob, name="post"),
 
     path('detail/<slug:slug>', jobDetail, name='detail'),
 ]
