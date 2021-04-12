@@ -10,10 +10,11 @@ from .models import *
 
 
 def loginPage(request):
+    # AUTHENTICATE USER LOGIN
     if request.method == 'POST':
         data = request.POST
         user = authenticate(
-            username=data['username'], password=data['password'])
+            email=data['username'], password=data['password'])
         if user is not None:
             login(request, user)
             return redirect('jobs')
@@ -28,6 +29,22 @@ def logoutFn(request):
 
 
 def signup(request):
+    # AUTHENTICATE USER SIGNUP
+    if request.method == 'POST':
+        data = request.POST
+        user = User.objects.create_user(
+            username=data['username'],
+            first_name=data['fname'],
+            last_name=data['lname'],
+            email=data['email'],
+            password=data['password']
+        )
+        if user:
+            user.save()
+            login(request, user)
+            return redirect('jobs')
+        else:
+            messages.info(request, 'Sorry an error ocured. Please try again')
     return render(request, 'portal/register.html')
 
 
