@@ -102,6 +102,7 @@ def jobDetail(request, slug):
     }
     return render(request, 'portal/single.html', context)
 
+
 @login_required(login_url='login')
 def addJob(request):
     return render(request, 'portal/jpost_job.html')
