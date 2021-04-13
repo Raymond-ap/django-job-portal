@@ -4222,3 +4222,7 @@ Paginator
 nd of Paginator
 #######################
 */
+
+#cke_id_description {
+  width: fit-content !important;
+}
