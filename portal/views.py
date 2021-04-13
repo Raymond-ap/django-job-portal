@@ -5,6 +5,7 @@ from django.contrib.auth.models import User
 from django.core.paginator import Paginator
 from django.shortcuts import redirect, render
 from django.views.generic.edit import CreateView, UpdateView
+from django.forms import inlineformset_factory
 
 from .forms import *
 from .filters import JobFilter
@@ -107,8 +108,10 @@ def jobDetail(request, slug):
 
 @login_required(login_url='login')
 def addJob(request):
+    jobFormSet = inlineformset_factory(Job, JobRequirement, fields=('requirement',))
+    formSet = jobFormSet()
     form = JobForm()
-    return render(request, 'portal/jpost_job.html', {'form': form})
+    return render(request, 'portal/jpost_job.html', {'formSet': formSet})
 
 
 def contact(request):
