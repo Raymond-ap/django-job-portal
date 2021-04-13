@@ -32,3 +32,6 @@ class CategoryAdmin(admin.ModelAdmin):
 class ContactAdmin(admin.ModelAdmin):
     list_display = ('name', 'email', 'subject', 'date', 'viwed')
     search_fields = ('name', 'email', 'subject')
+
+
+admin.site.register(JobRequirement)
