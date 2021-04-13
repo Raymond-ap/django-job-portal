@@ -25,7 +25,9 @@
 				<div class="container">	
                 <form action="#" method="POST" class="uniForm" style="margin-top: 2.7rem">
 				{% csrf_token %}
-                {{formSet.media}}
+                {{form.media}}
+				{{form|crispy}}
+				<h4>Requirements</h4>
                     {{formSet|crispy}}
 					<div class="" style="margin: 1rem 0 2rem 0">
 						<button class="btn btn-info" style="width: 100%"  type="Submit">submit</button>
