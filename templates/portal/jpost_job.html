@@ -1,6 +1,145 @@
 {% extends 'base.html' %}
 {% load static %}
+{% load crispy_forms_tags %}
 {% block title %} | Add a post{% endblock title%}
 {% block content %}
+
+
+			<!-- start banner Area -->
+			<section class="banner-area relative" id="home">	
+				<div class="overlay overlay-bg"></div>
+				<div class="container">
+					<div class="row d-flex align-items-center justify-content-center">
+						<div class="about-content col-lg-12">
+							<h1 class="text-white">
+								Post job		
+							</h1>	
+							<p class="text-white link-nav"><a href="{% url 'home' %}">Home </a>  <span class="lnr lnr-arrow-right"></span>  <a href="#"> Post job</a></p>
+						</div>											
+					</div>
+				</div>
+			</section>
+			<!-- End banner Area -->
+
+            <section class="team-area " id="">
+				<div class="container">	
+                <form action="#" method="POST" class="uniForm" style="margin-top: 2.7rem">
+				{% csrf_token %}
+                {{form.media}}
+                    {{form|crispy}}
+					<div class="" style="margin: 1rem 0 2rem 0">
+						<button class="btn btn-info" style="width: 100%"  type="Submit">submit</button>
+					</div>
+                </form>
+                </div>
+            </div>
+
+			<!-- Start feature-cat Area -->
+			<section class="feature-cat-area pt-100" id="category">
+				<div class="container">
+					<div class="row d-flex justify-content-center">
+						<div class="menu-content pb-60 col-lg-10">
+							<div class="title text-center">
+								<h1 class="mb-10">Featured Job Categories</h1>
+								<p>Who are in extremely love with eco friendly system.</p>
+							</div>
+						</div>
+					</div>						
+					<div class="row">
+						<div class="col-lg-2 col-md-4 col-sm-6">
+							<div class="single-fcat">
+								<a href="{% url 'jobs' %}">
+									<img src="{% static 'img/o1.png' %}" alt="">
+								</a>
+								<p>Accounting</p>
+							</div>
+						</div>
+						<div class="col-lg-2 col-md-4 col-sm-6">
+							<div class="single-fcat">
+								<a href="{% url 'jobs' %}">
+									<img src="{% static 'img/o2.png' %}" alt="">
+								</a>
+								<p>Development</p>
+							</div>
+						</div>
+						<div class="col-lg-2 col-md-4 col-sm-6">
+							<div class="single-fcat">
+								<a href="{% url 'jobs' %}">
+									<img src="{% static 'img/o3.png' %}" alt="">
+								</a>
+								<p>Technology</p>
+							</div>
+						</div>
+						<div class="col-lg-2 col-md-4 col-sm-6">
+							<div class="single-fcat">
+								<a href="{% url 'jobs' %}">
+									<img src="{% static 'img/o4.png' %}" alt="">
+								</a>
+								<p>Media & News</p>
+							</div>
+						</div>
+						<div class="col-lg-2 col-md-4 col-sm-6">
+							<div class="single-fcat">
+								<a href="{% url 'jobs' %}">
+									<img src="{% static 'img/o5.png' %}" alt="">
+								</a>
+								<p>Medical</p>
+							</div>
+						</div>
+						<div class="col-lg-2 col-md-4 col-sm-6">
+							<div class="single-fcat">
+								<a href="{% url 'jobs' %}">
+									<img src="{% static 'img/o6.png' %}" alt="">
+								</a>
+								<p>Goverment</p>
+							</div>			
+						</div>																											
+					</div>
+				</div>	
+			</section>
+			<!-- End feature-cat Area -->
+			
+			<!-- Start download Area -->
+			<section class="download-area section-gap" id="app">
+				<div class="container">
+					<div class="row">
+						<div class="col-lg-6 download-left">
+							<img class="img-fluid" src="{% static 'img/d1.png' %}" alt="">
+						</div>
+						<div class="col-lg-6 download-right">
+							<h1>Download the <br>
+							Job Listing App Today!</h1>
+							<p class="subs">
+								Our app will soon be available on both andriod and ios devices
+							</p>
+							<div class="d-flex flex-row">
+								<div class="buttons">
+									<i class="fa fa-apple" aria-hidden="true"></i>
+									<div class="desc">
+										<a href="#">
+											<p>
+												<span>Available</span> <br>
+												on App Store
+											</p>
+										</a>
+									</div>
+								</div>
+								<div class="buttons">
+									<i class="fa fa-android" aria-hidden="true"></i>
+									<div class="desc">
+										<a href="#">
+											<p>
+												<span>Available</span> <br>
+												on Play Store
+											</p>
+										</a>
+									</div>
+								</div>									
+							</div>						
+						</div>
+					</div>
+				</div>	
+			</section>
+			<!-- End download Area -->
 
 {% endblock content %}		
