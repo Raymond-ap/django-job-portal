@@ -77,7 +77,7 @@ def jobs(request):
     jobs = filters.qs
 
     # PAGINATOR
-    paginator = Paginator(jobs, 15)
+    paginator = Paginator(jobs, 10)
     page_number = request.GET.get('page', 1)
     page_objects = paginator.get_page(page_number)
 
@@ -109,10 +109,32 @@ def jobDetail(request, slug):
 @login_required(login_url='login')
 def addJob(request):
     jobFormSet = inlineformset_factory(
-        Job, JobRequirement, fields=('requirement',))
+        Job, JobRequirement, fields=('requirement',), can_delete=True)
+
     formSet = jobFormSet()
     form = JobForm()
-    return render(request, 'portal/jpost_job.html', {'formSet': formSet})
+
+    if request.method == 'POST':
+        data = request.POST
+
+        formSet = jobFormSet()
+        form = JobForm(request.POST)
+
+        if form.is_valid():
+            job_instance = form.save(commit=False)
+            job_instance.job_title = data['job_title']
+            job_instance.save()
+            job = Job.objects.get(pk=job_instance.id)
+            formSet = jobFormSet(request.POST, instance=job)
+            if formSet.is_valid():
+                formSet.save()
+                return redirect('jobs')
+
+    return render(request, 'portal/jpost_job.html',
+                  {
+                      'formSet': formSet,
+                      'form': form,
+                  })
 
 
 def contact(request):
