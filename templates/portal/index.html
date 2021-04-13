@@ -172,7 +172,7 @@
 						<div class="col-lg-8 post-list">
 							<p class="text-center">Recent jobs post</p>	
 							{% comment %} Single post {% endcomment %}
-							{% for job in jobs|slice:":6" %}
+							{% for job in jobs|slice:":5" %}
 							<div class="single-post d-flex flex-row">
 								<div class="thumb">
 									<img src="{% static 'img/post.png' %}" alt="">
