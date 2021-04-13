@@ -37,20 +37,19 @@
 											<a href="{% url 'detail' job.slug %}"><h4>{{job.job_title}}</h4></a>
 											<h6>{{job.company_name}}</h6>					
 										</div>
+									</div>
 										<ul class="btns">
-											<li><a href="{% url 'detail' job.slug %}"><span class="lnr lnr-heart"></span></a></li>
-											
 											{% if request.user.is_authenticated %}
 											{% if job.application_url %}
 											<li><a href="{{job.application_url}}" target="_blank">Apply</a></li>
 											{% endif %}
 											{% else %}
 											<li><a href="">Login to apply</a></li>
-											{% endif %}
-											
+											{% endif %}	
 										</ul>
-									</div>
+											<br>
 									<h5>Job Nature: {{job.job_type}}</h5>
+									<a href="mailto:{{job.company_email}}" class="address">Email:<span class="lnr lnr fas fa-envelope"></span>{{job.company_email}}</a>
 									<p class="address"><span class="lnr lnr-map"></span> {{job.location}}</p>
 									{% if job.salary %}
 									<p class="address"><span class="lnr lnr-database"></span> GHC {{job.salary}}</p>
