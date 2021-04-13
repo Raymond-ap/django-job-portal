@@ -16,7 +16,7 @@ def loginPage(request):
     if request.method == 'POST':
         data = request.POST
         user = authenticate(
-            email=data['username'], password=data['password'])
+            username=data['username'], password=data['password'])
         if user is not None:
             login(request, user)
             return redirect('jobs')
