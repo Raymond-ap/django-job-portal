@@ -55,7 +55,7 @@
 							{% for job in page_objects %}
 							<div class="single-post d-flex flex-row">
 								<div class="thumb">
-									<img src="{% static 'img/post.png' %}" alt="">
+									{% comment %} <img src="{% static 'img/post.png' %}" alt=""> {% endcomment %}
 								</div>
 								&nbsp;
 								<div class="details">
@@ -150,7 +150,7 @@
 									<li>
 									<a class="justify-content-between d-flex" href="{% url 'jobs' %}?category={{category.category}}">
 									<p>{{category.category}}</p>
-									<span>37</span>
+									<span></span>
 									</a>
 									</li>
 								{% endfor %}
