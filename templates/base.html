@@ -8,12 +8,17 @@
 		<link rel="shortcut icon" href="{% static 'img/fav.png' %}">
 		<!-- Author Meta -->
 		<meta name="author" content="codepixer">
+		<!-- meta title set -->
+		<meta property="og:title" content="">
 		<!-- Meta Description -->
-		<meta name="description" content="">
+		<meta property="og:description" name="description" content="">
+		<!-- -->
+		 <meta property="og:type" content="website" >
 		<!-- Meta Keyword -->
 		<meta name="keywords" content="">
 		<!-- meta character set -->
 		<meta charset="UTF-8">
+		
 		<!-- Site Title -->
 		<title>Finder {% block title %} {% endblock title%}</title>
 
@@ -146,7 +151,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 			<script src="{% static 'js/vendor/jquery-2.2.4.min.js' %}"></script>
 			<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
 			<script src="{% static 'js/vendor/bootstrap.min.js' %}"></script>			
-			<script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBhOdIF3Y9382fqJYt5I_sswSrEw5eihAA"></script>
   			<script src="{% static 'js/easing.min.js' %}"></script>			
 			<script src="{% static 'js/hoverIntent.js' %}"></script>
 			<script src="{% static 'js/superfish.min.js' %}"></script>	
