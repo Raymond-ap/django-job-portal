@@ -11,7 +11,7 @@ class JobRequirementInline(admin.TabularInline):
 
 class JobAdmin(admin.ModelAdmin):
     inlines = [JobRequirementInline]
-    list_display = ('company_name', 'job_title', 'company_email',
+    list_display = ('company_name', 'job_title', 'company_email', 'category',
                     'location', 'created', 'featured', 'approved')
     search_fields = ('company_name', 'job_title',
                      'company_email', 'company_email')
