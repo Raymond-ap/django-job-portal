@@ -4342,3 +4342,8 @@ nd of Paginator
     width: inherit !important;
   }
 }
+
+.nice-select .current {
+  display: flex;
+  overflow: hidden;
+}
