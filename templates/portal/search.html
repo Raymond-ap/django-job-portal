@@ -40,7 +40,7 @@
 									</div>								
 								</div>
 							</form>	
-							<p class="text-white">{{paginator.count}} Results found</p>
+							<p class="text-white">{{page_objects.count}} Results found</p>
 						</div>											
 					</div>
 				</div>
@@ -53,40 +53,40 @@
 					<div class="row justify-content-center d-flex">
 						<div class="col-lg-8 post-list">
 							{% for job in page_objects %}
-							<div class="single-post d-flex flex-row">
-								<div class="thumb">
-									{% comment %} <img src="{% static 'img/post.png' %}" alt=""> {% endcomment %}
-								</div>
-								&nbsp;
-								<div class="details">
-									<div class="title d-flex flex-row justify-content-between">
-										<div class="titles">
-											<a href="{% url 'detail' job.slug %}"><h4>{{job.job_title}}</h4></a>
-											<h6>{{job.company_name}}</h6>					
-										</div>
-										<ul class="btns">
-											<li><a href="{% url 'detail' job.slug %}"><span class="lnr lnr-heart"></span></a></li>
-
-											{% if request.user.is_authenticated %}
-											<li><a href="{% url 'detail' job.slug %}">Apply</a></li>
-											{% else %}
-											<li><a href="{% url 'login' %}">Login to apply</a></li>
-											{% endif %}
-
-										</ul>
+								<div class="single-post d-flex flex-row">
+									<div class="thumb">
+										{% comment %} <img src="{% static 'img/post.png' %}" alt=""> {% endcomment %}
 									</div>
-									<p>
-									{{job.description|slice:":150"|safe}}...
-									</p>
-									<h5>Job Nature: {{job.job_type}}</h5>
-									<p class="address"><span class="lnr lnr-map"></span> {{job.location}}</p>
-									{% if job.salary %}
-									<p class="address"><span class="lnr lnr-database"></span> GHC {{job.salary}}</p>
-									{% endif %}
+									&nbsp;
+									<div class="details">
+										<div class="title d-flex flex-row justify-content-between">
+											<div class="titles">
+												<a href="{% url 'detail' job.slug %}"><h4>{{job.job_title}}</h4></a>
+												<h6>{{job.company_name}}</h6>					
+											</div>
+											<ul class="btns">
+												<li><a href="{% url 'detail' job.slug %}"><span class="lnr lnr-heart"></span></a></li>
+
+												{% if request.user.is_authenticated %}
+												<li><a href="{% url 'detail' job.slug %}">Apply</a></li>
+												{% else %}
+												<li><a href="{% url 'login' %}">Login to apply</a></li>
+												{% endif %}
+
+											</ul>
+										</div>
+										<p>
+										{{job.description|slice:":150"|safe}}...
+										</p>
+										<h5>Job Nature: {{job.job_type}}</h5>
+										<p class="address"><span class="lnr lnr-map"></span> {{job.location}}</p>
+										{% if job.salary %}
+										<p class="address"><span class="lnr lnr-database"></span> GHC {{job.salary}}</p>
+										{% endif %}
+									</div>
 								</div>
-							</div>
-							{% empty %}
-							<h3> No job post found </h4>
+								{% empty %}
+								<h3> No job post found </h4>
 							{% endfor %}
 							
 							 <div class="container mt-5">
@@ -111,6 +111,7 @@
 						</div>
 						<div class="col-lg-4 sidebar">
 
+							{% if jobs.count > 1 %}
 							<div class="single-slidebar">
 								<h4>Top featured job posts</h4>
 								<div class="active-relatedjob-carusel">
@@ -135,7 +136,8 @@
 									</div>			
 								{% endfor %}														
 								</div>
-								</div>
+							</div>
+							{% endif %}
 
 							<div class="single-slidebar">
 								<h4>Jobs by Category </h4>
