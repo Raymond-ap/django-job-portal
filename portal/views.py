@@ -6,6 +6,7 @@ from django.core.paginator import Paginator
 from django.shortcuts import redirect, render
 from django.views.generic.edit import CreateView, UpdateView
 from django.forms import inlineformset_factory
+from django.http import HttpResponse
 
 from .forms import *
 from .filters import JobFilter
@@ -112,7 +113,7 @@ def jobDetail(request, slug):
         job = Job.objects.get(approved=True, slug=slug)
         requirements = job.requirements.all()
     except Exception:
-        pass
+        return HttpResponse('Sorry this job does not exit\n<a href="/jobs">Return to home page</a>')
 
     context = {
         'job': job,
