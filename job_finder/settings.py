@@ -43,6 +43,8 @@ INSTALLED_APPS = [
     'ckeditor',
     'django_filters',
     'crispy_forms',
+
+    'social_django',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
