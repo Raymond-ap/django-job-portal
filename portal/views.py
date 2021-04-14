@@ -63,11 +63,15 @@ def signup(request):
 def homePage(request):
     filters = JobFilter(
         request.GET, queryset=Job.objects.filter(approved=True))
+    result_filters = filters.qs
 
     context = {
         'filters': filters
     }
-    return render(request, 'portal/index.html', context)
+    if request.method == "GET" and 'search' in request.GET:
+        return redirect('jobs')
+    else:
+        return render(request, 'portal/index.html', context)
 
 
 def jobs(request):
