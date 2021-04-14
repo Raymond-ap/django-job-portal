@@ -77,13 +77,8 @@ def homePage(request):
 
 def jobs(request):
 
-    # SEARCH FIELDS
-    filters = JobFilter(
-        request.GET, queryset=Job.objects.filter(approved=True))
-    jobs = filters.qs
-
     # PAGINATOR
-    paginator = Paginator(jobs, 10)
+    paginator = Paginator(Job.objects.filter(approved=True), 10)
     page_number = request.GET.get('page', 1)
     page_objects = paginator.get_page(page_number)
 
@@ -95,7 +90,13 @@ def jobs(request):
         jobs = Job.objects.filter(
             approved=True, category__category=category)
 
-    page_objects = jobs
+    # SEARCH FIELDS
+    filters = JobFilter(
+        request.GET, queryset=Job.objects.filter(approved=True))
+    if jobs:
+        page_objects = jobs
+    else:
+        page_objects = filters.qs
 
     context = {
         'jobs': jobs,
