@@ -1,80 +1,169 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Finder {% block title %} | Sigup{% endblock title%}</title>
-	<meta name="author" content="David Grzyb">
-    <meta name="description" content="">
-
-    <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap" rel="stylesheet">
+    <meta name="author" content="David Grzyb" />
+    <meta name="description" content="" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-eOJMYsd53ii+scO/bJGFsiCZc+5NDVN2yr8+0RDqr0Ql0h+rP48ckxlpbzKgwra6" crossorigin="anonymous">
+    <link
+      href="https://unpkg.com/tailwindcss/dist/tailwind.min.css"
+      rel="stylesheet"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap"
+      rel="stylesheet"
+    />
     <style>
-        .body-bg {
-            background-color: #9921e8;
-            background-image: linear-gradient(315deg, #9921e8 0%, #5f72be 74%);
-        }
+      .body-bg {
+        background-color: #9921e8;
+        background-image: linear-gradient(315deg, #9921e8 0%, #5f72be 74%);
+      }
     </style>
-</head>
-<body class="body-bg min-h-screen pt-12 md:pt-20 pb-6 px-2 md:px-0" style="font-family:'Lato',sans-serif;">
+  </head>
+  <body
+    class="body-bg min-h-screen pt-12 md:pt-20 pb-6 px-2 md:px-0"
+    style="font-family: 'Lato', sans-serif"
+  >
     <header class="max-w-lg mx-auto">
-        <a href="{% url 'home' %}">
-            <h1 class="text-4xl font-bold text-white text-center">Register</h1>
-        </a>
+      <a href="{% url 'home' %}">
+        <h1 class="text-4xl font-bold text-white text-center">Register</h1>
+      </a>
     </header>
 
-    <main class="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl">
-        <section>
-            <h3 class="font-bold text-2xl">Welcome to Finder</h3>
-            <p class="text-gray-600 pt-2">Register an account.</p>
-        </section>
-        {% for message in messages %}
-            {% if message %}
-            <div class="alert alert-{{message.tag}} alert-dismissible fade show" role="alert">
-				<strong>{{message}}</strong> 
-				<button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-			</div>
-            {% endif %}
-            {% endfor %}
+    <main
+      class="bg-white max-w-lg mx-auto p-8 md:p-12 my-10 rounded-lg shadow-2xl"
+    >
+      <section>
+        <h3 class="font-bold text-2xl">Welcome to Finder</h3>
+        <p class="text-gray-600 pt-2">Register an account.</p>
+      </section>
+      {% for message in messages %} {% if message %}
+      <div
+        class="alert alert-{{message.tags}} alert-dismissible fade show"
+        role="alert"
+      >
+        <strong>{{message}}</strong>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      {% endif %} {% endfor %}
 
-
-        <section class="mt-10">
-            <form class="flex flex-col" method="POST" action="#">
-            {% csrf_token %}
-                <div class="mb-6 pt-3 rounded bg-gray-200">
-                    <label class="block text-gray-700 text-sm font-bold mb-2 ml-3" for="fname">First name</label>
-                    <input type="text" name="fname" id="fname" class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3" required>
-                </div>
-                <div class="mb-6 pt-3 rounded bg-gray-200">
-                    <label class="block text-gray-700 text-sm font-bold mb-2 ml-3" for="lname">last name</label>
-                    <input type="text" name="lname" id="lname" class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3" required>
-                </div>
-                <div class="mb-6 pt-3 rounded bg-gray-200">
-                    <label class="block text-gray-700 text-sm font-bold mb-2 ml-3" for="username">Username</label>
-                    <input type="text" name="username" id="username" class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3" required>
-                </div>
-                <div class="mb-6 pt-3 rounded bg-gray-200">
-                    <label class="block text-gray-700 text-sm font-bold mb-2 ml-3" for="email">Email</label>
-                    <input type="email" name="email" id="email" class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3" required>
-                </div>
-                <div class="mb-6 pt-3 rounded bg-gray-200">
-                    <label class="block text-gray-700 text-sm font-bold mb-2 ml-3" for="password">Password</label>
-                    <input type="password" name="password" id="password" class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3" required>
-                </div>
-                <button class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200" type="submit">Sign Up</button>
-            </form>
-        </section>
+      <section class="mt-10">
+        <form class="flex flex-col" method="POST" action="#">
+          {% csrf_token %}
+          <div class="mb-6 pt-3 rounded bg-gray-200">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2 ml-3"
+              for="fname"
+              >First name</label
+            >
+            <input
+              type="text"
+              name="fname"
+              id="fname"
+              class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3"
+              required
+            />
+          </div>
+          <div class="mb-6 pt-3 rounded bg-gray-200">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2 ml-3"
+              for="lname"
+              >last name</label
+            >
+            <input
+              type="text"
+              name="lname"
+              id="lname"
+              class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3"
+              required
+            />
+          </div>
+          <div class="mb-6 pt-3 rounded bg-gray-200">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2 ml-3"
+              for="username"
+              >Username</label
+            >
+            <input
+              type="text"
+              name="username"
+              id="username"
+              class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3"
+              required
+            />
+          </div>
+          <div class="mb-6 pt-3 rounded bg-gray-200">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2 ml-3"
+              for="email"
+              >Email</label
+            >
+            <input
+              type="email"
+              name="email"
+              id="email"
+              class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3"
+              required
+            />
+          </div>
+          <div class="mb-6 pt-3 rounded bg-gray-200">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2 ml-3"
+              for="password"
+              >Password</label
+            >
+            <input
+              type="password"
+              name="password"
+              id="password"
+              class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3"
+              required
+            />
+          </div>
+          <div class="mb-6 pt-3 rounded bg-gray-200">
+            <label
+              class="block text-gray-700 text-sm font-bold mb-2 ml-3"
+              for="password2"
+              >Confirm password</label
+            >
+            <input
+              type="password"
+              name="password2"
+              id="password2"
+              class="bg-gray-200 rounded w-full text-gray-700 focus:outline-none border-b-4 border-gray-300 focus:border-purple-600 transition duration-500 px-3 pb-3"
+              required
+            />
+          </div>
+          <button
+            class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 rounded shadow-lg hover:shadow-xl transition duration-200"
+            type="submit"
+          >
+            Sign Up
+          </button>
+        </form>
+      </section>
     </main>
 
     <div class="max-w-lg mx-auto text-center mt-12 mb-6">
-        <p class="text-white">Already have an account? <a href="{% url 'login' %}" class="font-bold hover:underline">Log in</a>.</p>
+      <p class="text-white">
+        Already have an account?
+        <a href="{% url 'login' %}" class="font-bold hover:underline">Log in</a
+        >.
+      </p>
     </div>
 
     <footer class="max-w-lg mx-auto flex justify-center text-white">
-        <a href="{% url 'contact' %}" class="hover:underline">Contact</a>
-        <span class="mx-3">•</span>
-        <a href="#" class="hover:underline">Privacy</a>
+      <a href="{% url 'contact' %}" class="hover:underline">Contact</a>
+      <span class="mx-3">•</span>
+      <a href="#" class="hover:underline">Privacy</a>
     </footer>
-</body>
+  </body>
 </html>
