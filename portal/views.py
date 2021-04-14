@@ -22,7 +22,7 @@ def loginPage(request):
             login(request, user)
             return redirect('jobs')
         else:
-            messages.info(request, 'An error occured. Please try again')
+            messages.info(request, 'Invalid credentials')
     return render(request, 'portal/login.html')
 
 
@@ -35,19 +35,28 @@ def signup(request):
     # AUTHENTICATE USER SIGNUP
     if request.method == 'POST':
         data = request.POST
-        user = User.objects.create_user(
-            username=data['username'],
-            first_name=data['fname'],
-            last_name=data['lname'],
-            email=data['email'],
-            password=data['password']
-        )
-        if user:
-            user.save()
-            login(request, user)
-            return redirect('jobs')
+
+        if data['password'] == data['password2']:
+            if User.objects.filter(username=data['username']).exists():
+                messages.info(request, "Username already taken")
+                return redirect('signup')
+            elif User.objects.filter(email=data['email']).exists():
+                messages.info(request, "email already taken")
+                return redirect('signup')
+            else:
+                user = User.objects.create_user(
+                    username=data['username'],
+                    first_name=data['fname'],
+                    last_name=data['lname'],
+                    email=data['email'],
+                    password=data['password']
+                )
+                user.save()
+                login(request, user)
+                return redirect('jobs')
         else:
-            messages.info(request, 'Sorry an error ocured. Please try again')
+            messages.error(request, 'Password does not match')
+
     return render(request, 'portal/register.html')
 
 
