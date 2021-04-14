@@ -74,7 +74,7 @@
 											</ul>
 										</div>
 										<p>
-										{{job.description|slice:":150"|safe}}...
+										{% comment %} {{job.description|slice:":150"|safe}}... {% endcomment %}
 										</p>
 										<h5>Job Nature: {{job.job_type}}</h5>
 										<p class="address"><span class="lnr lnr-map"></span> {{job.location}}</p>
@@ -118,7 +118,7 @@
 										<a href="{% url 'detail' job.slug %}"><h4>{{job.job_title|title}}</h4></a>
 										<h6>{{job.company_name|title}}</h6>
 										<p>
-										{{job.description|slice:":100"|safe}}..
+										{% comment %} {{job.description|slice:":100"|safe}}.. {% endcomment %}
 										</p>
 										<h5>Job Nature: {{job.job_type}}</h5>
 										<p class="address"><span class="lnr lnr-map"></span> {{job.location}}</p>
