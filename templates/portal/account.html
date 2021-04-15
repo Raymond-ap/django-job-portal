@@ -1,0 +1,81 @@
+{% extends 'base.html' %} {% load static %} {% block title %} 
+{% endblock title%} {{request.user.username}} {% block content %}
+<!-- start banner Area -->
+<section class="banner-area relative" id="home">
+  <div class="overlay overlay-bg"></div>
+  <div class="container">
+    <div class="row d-flex align-items-center justify-content-center">
+      <div class="about-content col-lg-12">
+        <h1 class="text-white">Your profile</h1>
+        <p class="text-white link-nav">
+          <a href="{% url 'home' %}">Home </a>
+          <span class="lnr lnr-arrow-right"></span>
+          <a href="javascript:void(0)"> Account</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+<!-- End banner Area -->
+<div class="container">
+  <div class="main-body" style="margin-top: 7rem">
+    <div class="row gutters-sm">
+      <div class="col-md-4 mb-3">
+        <div class="card">
+          <div class="card-body">
+            <div class="d-flex flex-column align-items-center text-center">
+              <img
+                src="https://bootdey.com/img/Content/avatar/avatar7.png"
+                alt="Admin"
+                class="rounded-circle"
+                width="150"
+              />
+              <div class="mt-3">
+                <h4>{{request.user.username}}</h4>
+                <br />
+                <form action="" method="POST">
+                  {% csrf_token %}
+                  <button name='Delete' class="btn btn-danger">Delete account</button>
+                </form>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-8">
+        <div class="card mb-3">
+          <div class="card-body">
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Full Name</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{request.user.first_name}} {{request.user.last_name}}
+              </div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Email</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">{{request.user.email}}</div>
+            </div>
+            <hr />
+            <div class="row">
+              <div class="col-sm-3">
+                <h6 class="mb-0">Username</h6>
+              </div>
+              <div class="col-sm-9 text-secondary">
+                {{request.user.username}}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="row gutters-sm">{% comment %} {% endcomment %}</div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
