@@ -76,30 +76,16 @@ def homePage(request):
 
 
 def jobs(request):
-
-    # PAGINATOR
-    paginator = Paginator(Job.objects.filter(approved=True), 10)
-    page_number = request.GET.get('page', 1)
-    page_objects = paginator.get_page(page_number)
-
-    # FILTER JOB BY CATEGORY
-    category = request.GET.get('category')
-    if category == None:
-        jobs = Job.objects.filter(approved=True).order_by('-created')
-    else:
-        jobs = Job.objects.filter(
-            approved=True, category__category=category)
-
     # SEARCH FIELDS
     filters = JobFilter(
         request.GET, queryset=Job.objects.filter(approved=True))
-    if jobs:
-        page_objects = jobs
-    else:
-        page_objects = filters.qs
+
+    # PAGINATOR
+    paginator = Paginator(filters.qs, 1)
+    page_number = request.GET.get('page', 1)
+    page_objects = paginator.get_page(page_number)
 
     context = {
-        'jobs': jobs,
         'filters': filters,
         'page_objects': page_objects,
         'paginator': paginator
