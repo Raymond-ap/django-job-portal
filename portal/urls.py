@@ -10,6 +10,7 @@ urlpatterns = [
     path('signup', signup, name="signup"),
     path('logout', logoutFn, name="logout"),
     path('post', addJob, name="post"),
+    path('account', account, name="account"),
 
     path('detail/<slug:slug>', jobDetail, name='detail'),
 ]
