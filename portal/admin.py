@@ -6,7 +6,7 @@ from .models import *
 
 class JobRequirementInline(admin.TabularInline):
     model = JobRequirement
-    extra = 7
+    extra = 4
 
 
 class JobAdmin(admin.ModelAdmin):
