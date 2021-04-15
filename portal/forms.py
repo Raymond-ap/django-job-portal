@@ -18,4 +18,4 @@ class JobRequirementForm(forms.ModelForm):
 
 
 JobRequirementFormset = inlineformset_factory(
-    Job, JobRequirement, form=JobRequirementForm, extra=7)
+    Job, JobRequirement, form=JobRequirementForm, extra=4)
