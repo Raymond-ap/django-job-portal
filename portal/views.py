@@ -81,7 +81,7 @@ def jobs(request):
         request.GET, queryset=Job.objects.filter(approved=True))
 
     # PAGINATOR
-    paginator = Paginator(filters.qs, 1)
+    paginator = Paginator(filters.qs, 10)
     page_number = request.GET.get('page', 1)
     page_objects = paginator.get_page(page_number)
 
