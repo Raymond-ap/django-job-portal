@@ -169,7 +169,7 @@
 							{% for job in jobs|slice:":5" %}
 							<div class="single-post d-flex flex-row">
 								&nbsp;
-								<div class="details">
+								<div class="details" style="width: 100% !important;">
 									<div class="title d-flex flex-row justify-content-between">
 										<div class="titles">
 											<a href="{% url 'detail' job.slug %}"><h4>{{job.job_title}}</h4></a>
