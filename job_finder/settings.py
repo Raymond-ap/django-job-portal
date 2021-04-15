@@ -46,8 +46,6 @@ INSTALLED_APPS = [
     'ckeditor',
     'django_filters',
     'crispy_forms',
-
-    'social_django',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -65,7 +63,6 @@ MIDDLEWARE = [
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 
-    'social_django.middleware.SocialAuthExceptionMiddleware',
 
 ]
 
@@ -84,25 +81,13 @@ TEMPLATES = [
                 'django.contrib.messages.context_processors.messages',
                 'portal.context_processors.Processors',
 
-                'social_django.context_processors.backends',
-                'social_django.context_processors.login_redirect',
 
             ],
         },
     },
 ]
 
-AUTHENTICATION_BACKENDS = (
-    'social_core.backends.facebook.FacebookOAuth2',
-    'social_core.backends.twitter.TwitterOAuth',
-    'social_core.backends.github.GithubOAuth2',
 
-    'django.contrib.auth.backends.ModelBackend',
-)
-
-LOGIN_URL = 'login'
-LOGOUT_URL = 'logout'
-LOGIN_REDIRECT_URL = 'home'
 
 WSGI_APPLICATION = 'job_finder.wsgi.application'
 
