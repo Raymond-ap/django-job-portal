@@ -81,7 +81,7 @@ def jobs(request):
         request.GET, queryset=Job.objects.filter(approved=True))
 
     # PAGINATOR
-    paginator = Paginator(filters.qs, 1)
+    paginator = Paginator(filters.qs, 10)
     page_number = request.GET.get('page', 1)
     page_objects = paginator.get_page(page_number)
 
@@ -154,3 +154,13 @@ def contact(request):
 
 def about(request):
     return render(request, 'portal/about-us.html')
+
+
+@login_required(login_url='signup')
+def account(request):
+    if request.method == 'POST' and 'Delete' in request.POST:
+        user = User.objects.get(username=request.user.username)
+        user.delete()
+        messages.info(request, 'Account deleted')
+        return redirect('signup')
+    return render(request, 'portal/account.html')
