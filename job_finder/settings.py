@@ -43,9 +43,11 @@ INSTALLED_APPS = [
 
     'portal.apps.PortalConfig',
     'blog.apps.BlogConfig',
+    'myapi.apps.MyapiConfig',
     'ckeditor',
     'django_filters',
     'crispy_forms',
+    'rest_framework',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -86,7 +88,6 @@ TEMPLATES = [
         },
     },
 ]
-
 
 
 WSGI_APPLICATION = 'job_finder.wsgi.application'
