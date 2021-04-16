@@ -3,5 +3,5 @@ from .views import *
 
 
 urlpatterns = [
-    path('/api-overview', JobAPIView.as_view()),
+    path('api-overview', JobAPIView.as_view()),
 ]
