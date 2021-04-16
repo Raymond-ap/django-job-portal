@@ -22,7 +22,6 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('portal.urls')),
     path('blog/', include('blog.urls')),
-    path('oauth/', include('social_django.urls', namespace='social')),
 ]
 
 urlpatterns = urlpatterns + \
