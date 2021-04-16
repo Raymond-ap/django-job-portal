@@ -40,30 +40,30 @@
 			<section class="features-area">
 				<div class="container">
 					<div class="row">
-						<div class="col-lg-3 col-md-6">
+						<div class="col-lg-4 col-md-6">
 							<div class="single-feature">
 								<h4>Searching</h4>
-								
+								<p>
+								Search through hundreds of jobs by keyword or by category
+								</p>
 							</div>
 						</div>
-						<div class="col-lg-3 col-md-6">
+						<div class="col-lg-4 col-md-6">
 							<div class="single-feature">
 								<h4>Applying</h4>
-								
+								<p>
+									Read requirements, apply and get feed back from employers
+								</p>
 							</div>
 						</div>
-						<div class="col-lg-3 col-md-6">
+						<div class="col-lg-4 col-md-6">
 							<div class="single-feature">
 								<h4>Security</h4>
-								
+								<p>
+									Do not pay any amount to anyone both on the platform or personally
+								</p>
 							</div>
-						</div>
-						<div class="col-lg-3 col-md-6">
-							<div class="single-feature">
-								<h4>Notifications</h4>
-								
-							</div>
-						</div>																		
+						</div>																	
 					</div>
 				</div>	
 			</section>
@@ -93,71 +93,7 @@
 				</div>	
 			</section>
 			<!-- End popular-post Area -->
-			
-			<!-- Start feature-cat Area -->
-			<section class="feature-cat-area pt-100" id="category">
-				<div class="container">
-					<div class="row d-flex justify-content-center">
-						<div class="menu-content pb-60 col-lg-10">
-							<div class="title text-center">
-								<h1 class="mb-10">Featured Job Categories</h1>
-								<p>Who are in extremely love with eco friendly system.</p>
-							</div>
-						</div>
-					</div>						
-					<div class="row">
-						<div class="col-lg-2 col-md-4 col-sm-6">
-							<div class="single-fcat">
-								<a href="{% url 'jobs' %}">
-									<img src="{% static 'img/o1.png' %}" alt="">
-								</a>
-								<p>Accounting</p>
-							</div>
-						</div>
-						<div class="col-lg-2 col-md-4 col-sm-6">
-							<div class="single-fcat">
-								<a href="{% url 'jobs' %}">
-									<img src="{% static 'img/o2.png' %}" alt="">
-								</a>
-								<p>Development</p>
-							</div>
-						</div>
-						<div class="col-lg-2 col-md-4 col-sm-6">
-							<div class="single-fcat">
-								<a href="{% url 'jobs' %}">
-									<img src="{% static 'img/o3.png' %}" alt="">
-								</a>
-								<p>Technology</p>
-							</div>
-						</div>
-						<div class="col-lg-2 col-md-4 col-sm-6">
-							<div class="single-fcat">
-								<a href="{% url 'jobs' %}">
-									<img src="{% static 'img/o4.png' %}" alt="">
-								</a>
-								<p>Media & News</p>
-							</div>
-						</div>
-						<div class="col-lg-2 col-md-4 col-sm-6">
-							<div class="single-fcat">
-								<a href="{% url 'jobs' %}">
-									<img src="{% static 'img/o5.png' %}" alt="">
-								</a>
-								<p>Medical</p>
-							</div>
-						</div>
-						<div class="col-lg-2 col-md-4 col-sm-6">
-							<div class="single-fcat">
-								<a href="{% url 'jobs' %}">
-									<img src="{% static 'img/o6.png' %}" alt="">
-								</a>
-								<p>Goverment</p>
-							</div>			
-						</div>																											
-					</div>
-				</div>	
-			</section>
-			<!-- End feature-cat Area -->
+
 			
 			<!-- Start post Area -->
 			<section class="post-area section-gap">
@@ -304,7 +240,7 @@
 			<!-- End calto-action Area -->
 
 			<!-- Start download Area -->
-			<section class="download-area section-gap" id="app">
+			{% comment %} <section class="download-area section-gap" id="app">
 				<div class="container">
 					<div class="row">
 						<div class="col-lg-6 download-left">
@@ -343,7 +279,7 @@
 						</div>
 					</div>
 				</div>	
-			</section>
+			</section> {% endcomment %}
 			<!-- End download Area -->
 		
 		
