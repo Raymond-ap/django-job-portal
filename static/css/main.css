@@ -2241,7 +2241,7 @@ body.mobile-nav-active #mobile-nav-toggle {
 }
 
 .section-gap {
-  padding: 40px 0;
+  padding: 22px 0;
 }
 
 .section-title {
@@ -3834,9 +3834,9 @@ body.mobile-nav-active #mobile-nav-toggle {
   font-size: 18px;
   font-weight: 600;
   text-align: center;
-  padding: 40px;
+  padding: 9px;
   color: #fff;
-  margin-bottom: 30px;
+  margin-bottom: 4px;
 }
 
 .contact-btns:hover {
