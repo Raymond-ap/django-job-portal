@@ -26,7 +26,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'fq4z=f^nnl7k@1gjfhq-c7^17^sm8pf)+w8zr+j+ya&_4dgldz'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ['127.0.0.1', 'ghjobfinder.herokuapp.com']
 
